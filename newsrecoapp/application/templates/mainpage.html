@@ -1,0 +1,101 @@
+<html>
+<head>
+    <title>News Recommendation App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <Style>
+      .fa
+      {
+      font-size= 400px;
+      cursor:pointer;
+      user-select:none;
+      }
+      .fa:hover{
+    color:blue;
+        }
+
+    .relevance-clicked {
+      color: blue !important;
+    }
+    </Style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Team Jericho</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="http://127.0.0.1:8000/registration/profile">User Profile</a></li>
+        <li class="active"><a href="#">News</a></li>
+        <li class="active"><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="page-header">
+    <h1>News Recommendation App</h1>
+  </div>
+<div class="news">
+      <ul>
+        {% for news in all_news %}
+        <li>
+            <a id="{{ news.id }}" class="news-link" href={{ news.url }} target="_blank">{{ news.title }}</a>
+            <p> {{news.description}}</p>
+            <i onclick = "myfunction({{ news.id }}, this)" class="fa fa-thumbs-up"></i>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p>
+                {% for category in news.categories %}
+                    <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-tag"></span>&nbsp;&nbsp;{{ category }}</button>
+                {% endfor %}
+            </p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+</body>
+
+
+<script type="text/javascript">
+    function myfunction(news_id, element) {
+        console.log("inside");
+        $.ajax({
+            type: "POST",
+            url: "/relevance/",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                news_id: news_id,
+                relevance: 1
+            },
+            success: function (data) {
+                console.log("Success");
+            }
+        });
+        element.className += " relevance-clicked";
+    }
+
+  $(document).ready(function() {
+    $(".news-link").click(function(event){
+    //event.preventDefault();
+      $.ajax({
+        type:"POST",
+        url:"/updateShowMore/",
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          newsId: event.target.id,
+          showMore: 1
+        },
+        success: function(data){
+        }
+      });
+    });
+    return false;
+  });
+</script>
+</html>

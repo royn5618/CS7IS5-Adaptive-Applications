@@ -1,0 +1,53 @@
+.header {
+  font-size: 75px;
+  text-align: center;
+  background-color: #7373ec;
+  color: #fff;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  font-size: 35px;
+  background-color: rgba(115, 115, 236, .38);
+}
+
+.category {}
+
+.outer {
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+  padding: 20px 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.outer:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.news {
+  text-align: justify;
+  font-size: 15px;
+}
+
+.dialog {
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  background-color: #fff;
+  padding: 100px;
+  z-index: 2;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}

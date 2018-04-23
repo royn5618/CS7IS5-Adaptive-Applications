@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<html>
+
+	<head>
+		<link rel="stylesheet" href="{% static 'style/stylesheet.css' %}">
+	</head>
+
+	<body>
+  </div>
+
+		<div class="container">
+		<div class="page-title">User Profile</div>
+
+		{% block content %}
+		<form method="post">
+		  {% csrf_token %}
+		  {{ user_form.as_p }}
+		  {{ profile_form.as_p }}
+		  <button type="submit">Save changes</button>
+		</form>
+		{% endblock %}
+		</div>
+	</body>
+
+</html>
