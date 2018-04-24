@@ -1,9 +1,9 @@
 CS7IS5 : Adaptive Applications
 ==
 Project 1: News Recommender System (newsrecoapp)
---
+
 Project 2: Movie Recommender System (movierecoapp)
---
+
 
 Project 1: News Recommender System Instructions
 --
