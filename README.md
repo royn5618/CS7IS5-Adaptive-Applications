@@ -1,6 +1,12 @@
-Adaptive Application
+CS7IS5 : Adaptive Applications
+
+Project 1: News Recommender System (newsrecoapp)
+Project 2: Movie Recommender System (movierecoapp)
+
+
+
+News Recommender System Instructions
 ==
-This is related to Addaptive application. 
 Requires Django 1.11.11 or 2.0.x , Python 3.5, Textrazor and requests package to be installed.
 News is fetched from newsapi.org for Ireland country.
 TextRazor is used to do text analysis for keyword extraction.
